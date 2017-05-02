@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name_2">Maps</string>
+
+    <!-- General -->
+    <string name="unknown_error_2">Whoops! Something went wrong</string>
+
+</resources>

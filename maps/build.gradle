@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.Wolox'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion '25.0.2'
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 25
+
+        multiDexEnabled true
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Wolmo
+    compile 'com.github.Wolox:wolmo-core-android:master'
+
+    // Google Play Services
+    compile 'com.google.android.gms:play-services-maps:10.2.1'
+    compile 'com.google.android.gms:play-services-places:10.2.1'
+    compile 'com.google.android.gms:play-services-location:10.2.1'
+
+    // Google Utilities
+    compile 'com.google.maps.android:android-maps-utils:0.4'
+
+    // Third-party
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
+}
