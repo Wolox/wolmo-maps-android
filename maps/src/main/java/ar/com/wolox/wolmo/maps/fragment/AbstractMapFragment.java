@@ -1,13 +1,16 @@
 package ar.com.wolox.wolmo.maps.fragment;
 
+import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.view.View;
 
 import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -45,7 +48,11 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
     @CallSuper
     public void init() {
         mWasDestroyed = false;
+    }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         final MapView mapView = getMapView();
         if (mapView == null) return;
 
@@ -73,7 +80,30 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
      */
     protected final void onMapReady(@NonNull GoogleMap map) {
         mMap = map;
+        setDefaultPosition();
         getPresenter().onMapReady();
+    }
+
+    /**
+     * Set the default position: latitude, longitude and zoom
+     */
+    private void setDefaultPosition() {
+        if (getDefaultLatlng() != null)
+            applyCameraUpdate(CameraUpdateFactory.newLatLngZoom(getDefaultLatlng(), getDefaultZoom()));
+    }
+
+    /**
+     * Override to set default zoom
+     */
+    protected float getDefaultZoom() {
+        return ZOOM_WHOLE_WORLD;
+    }
+
+    /**
+     * Override to set default latitude and longitude
+     */
+    protected @Nullable LatLng getDefaultLatlng() {
+        return null;
     }
 
     /**
@@ -87,7 +117,7 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
      * @param cameraUpdate target update
      */
     protected final void applyCameraUpdate(@NonNull CameraUpdate cameraUpdate) {
-        applyCameraUpdate(cameraUpdate, mMap.getCameraPosition().zoom > ZOOM_WHOLE_WORLD);
+        applyCameraUpdate(cameraUpdate, mMap.getCameraPosition().zoom > getDefaultZoom());
     }
 
 
@@ -162,7 +192,7 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
         return mMap.addPolyline(new PolylineOptions()
                                         .addAll(route)
                                         .clickable(true)
-                                        .color(selected ? getSelectedPolylineColorId() : getPolylineColorId())
+                                        .color(selected ? getSelectedPolylineColor() : getPolylineColor())
                                         .zIndex(selected ? SELECTED_ROUTE_Z : ROUTE_Z));
     }
 
@@ -186,7 +216,7 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
      * @param selected determines which color and z-index to set
      */
     protected final void formatPolyline(@NonNull Polyline polyline, boolean selected) {
-        polyline.setColor(selected ? getSelectedPolylineColorId() : getPolylineColorId());
+        polyline.setColor(selected ? getSelectedPolylineColor() : getPolylineColor());
         polyline.setZIndex(selected ? SELECTED_ROUTE_Z : ROUTE_Z);
     }
 
@@ -263,8 +293,16 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
         return R.color.polyline_green;
     }
 
+    private int getSelectedPolylineColor() {
+        return getResources().getColor(getSelectedPolylineColorId());
+    }
+
     public @ColorRes int getPolylineColorId() {
         return R.color.polyline_grey;
+    }
+
+    private int getPolylineColor() {
+        return getResources().getColor(getPolylineColorId());
     }
 
     public @DrawableRes int getSelectedPinRes() {
