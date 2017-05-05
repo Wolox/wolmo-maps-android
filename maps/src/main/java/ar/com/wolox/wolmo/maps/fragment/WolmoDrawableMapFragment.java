@@ -29,6 +29,7 @@ public abstract class WolmoDrawableMapFragment<T extends BasePresenter> extends 
     /* Lifecycle Methods Overriden for delegation to MapView */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
         mMapView = (MapView) view.findViewById(getMapViewId());
