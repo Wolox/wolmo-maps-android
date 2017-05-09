@@ -65,8 +65,6 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
                         if (mWasDestroyed) return;
 
                         AbstractMapFragment.this.onMapReady(map);
-
-                        setMapParameters();
                     }
                 });
             }
@@ -80,6 +78,7 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
      */
     protected final void onMapReady(@NonNull GoogleMap map) {
         mMap = map;
+        setMapParameters();
         setDefaultPosition();
         getPresenter().onMapReady();
     }

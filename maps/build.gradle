@@ -23,7 +23,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
     // Wolmo
-    compile 'com.github.Wolox:wolmo-core-android:master'
+    compile 'com.github.Wolox:wolmo-core-android:v0.5.0'
 
     // Google Play Services
     compile 'com.google.android.gms:play-services-maps:10.2.1'
