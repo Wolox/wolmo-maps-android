@@ -78,7 +78,7 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
      */
     protected final void onMapReady(@NonNull GoogleMap map) {
         mMap = map;
-        mMap.getUiSettings().setMapToolbarEnabled(false);
+        showMapToolBar(false);
         setMapParameters();
         setDefaultPosition();
         getPresenter().onMapReady();
