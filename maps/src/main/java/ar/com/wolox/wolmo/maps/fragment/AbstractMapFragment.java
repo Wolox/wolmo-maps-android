@@ -313,8 +313,15 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
         return R.drawable.ic_map_pin_unselected;
     }
 
+    /**
+     * Set if the map going to show the toolbar whit the link to GMaps.
+     * Call this method after OnViewCreated was called.
+     * @param enable
+     */
     public void showMapToolBar (boolean enable) {
-        mMap.getUiSettings().setMapToolbarEnabled(enable);
+        if (mMap != null) {
+            mMap.getUiSettings().setMapToolbarEnabled(enable);
+        }
     }
 
 }
