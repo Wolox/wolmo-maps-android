@@ -22,10 +22,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
-import java.util.List;
-
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 import ar.com.wolox.wolmo.maps.R;
+
+import java.util.List;
 
 /**
  * Fragment that allows rendering {@link Marker}s and {@link Polyline}s on the {@link GoogleMap}. It
@@ -78,6 +78,7 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
      */
     protected final void onMapReady(@NonNull GoogleMap map) {
         mMap = map;
+        showMapToolBar(false);
         setMapParameters();
         setDefaultPosition();
         getPresenter().onMapReady();
@@ -310,6 +311,17 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
 
     public @DrawableRes int getUnselectedPinRes() {
         return R.drawable.ic_map_pin_unselected;
+    }
+
+    /**
+     * Set if the map going to show the toolbar whit the link to GMaps.
+     * Call this method after OnViewCreated was called.
+     * @param enable
+     */
+    public void showMapToolBar (boolean enable) {
+        if (mMap != null) {
+            mMap.getUiSettings().setMapToolbarEnabled(enable);
+        }
     }
 
 }
