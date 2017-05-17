@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
+import ar.com.wolox.wolmo.maps.CustomMapView;
 import ar.com.wolox.wolmo.maps.R;
 
 import java.util.List;
@@ -53,7 +54,7 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final MapView mapView = getMapView();
+        final CustomMapView mapView = getMapView();
         if (mapView == null) return;
 
         mapView.getMapAsync(new OnMapReadyCallback() {

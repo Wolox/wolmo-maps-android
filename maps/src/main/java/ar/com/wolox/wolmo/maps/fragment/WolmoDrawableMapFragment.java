@@ -11,6 +11,7 @@ import com.google.android.gms.maps.MapView;
 
 import ar.com.wolox.wolmo.core.fragment.WoloxFragment;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
+import ar.com.wolox.wolmo.maps.CustomMapView;
 
 /**
  * A handy class that enables the user to use a single map.
@@ -24,7 +25,7 @@ import ar.com.wolox.wolmo.core.presenter.BasePresenter;
  */
 public abstract class WolmoDrawableMapFragment<T extends BasePresenter> extends WoloxFragment<T> {
 
-    private MapView mMapView;
+    private CustomMapView mMapView;
 
     /* Lifecycle Methods Overriden for delegation to MapView */
     @Override
@@ -32,7 +33,7 @@ public abstract class WolmoDrawableMapFragment<T extends BasePresenter> extends 
 
         View view = super.onCreateView(inflater, container, savedInstanceState);
 
-        mMapView = (MapView) view.findViewById(getMapViewId());
+        mMapView = (CustomMapView) view.findViewById(getMapViewId());
 
         if (mMapView != null) {
             mMapView.onCreate(savedInstanceState);
@@ -109,7 +110,7 @@ public abstract class WolmoDrawableMapFragment<T extends BasePresenter> extends 
      * @return the map view
      */
     @Nullable
-    protected final MapView getMapView() {
+    protected final CustomMapView getMapView() {
         return mMapView;
     }
 
