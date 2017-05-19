@@ -158,7 +158,7 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
      * @return Drawn {@link Marker};
      */
     @NonNull
-    private Marker drawMarker(@NonNull LatLng position, @DrawableRes int drawableId, float zIndex) {
+    protected final Marker drawMarker(@NonNull LatLng position, @DrawableRes int drawableId, float zIndex) {
         return mMap.addMarker(new MarkerOptions()
                                     .position(position)
                                     .icon(BitmapDescriptorFactory.fromResource(drawableId))
@@ -322,6 +322,19 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
         if (mMap != null) {
             mMap.getUiSettings().setMapToolbarEnabled(enable);
         }
+    }
+
+    /**
+     * Delegated to the map view: sets a button that, when clicked, shows the user's location.
+     * @param enable Set to true to add the button
+     */
+    public void setMyLocationEnabled(final boolean enable) {
+        getMapView().getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(GoogleMap googleMap) {
+                googleMap.setMyLocationEnabled(enable);
+            }
+        });
     }
 
 }
