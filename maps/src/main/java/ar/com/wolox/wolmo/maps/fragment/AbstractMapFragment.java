@@ -249,8 +249,11 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
     @Override
     @CallSuper
     public void onDestroyView() {
-        mWasDestroyed = true;
         super.onDestroyView();
+        mWasDestroyed = true;
+        mMap.setMyLocationEnabled(false);
+        mMap.clear();
+        mMap = null;
     }
 
     /**
