@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.maps.MapView;
 
-import ar.com.wolox.wolmo.core.fragment.WoloxFragment;
+import ar.com.wolox.wolmo.core.fragment.WolmoFragment;
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 
 /**
@@ -22,7 +22,7 @@ import ar.com.wolox.wolmo.core.presenter.BasePresenter;
  *
  * The map is accessible through {@link WolmoDrawableMapFragment#getMapView()}.
  */
-public abstract class WolmoDrawableMapFragment<T extends BasePresenter> extends WoloxFragment<T> {
+public abstract class WolmoDrawableMapFragment<T extends BasePresenter> extends WolmoFragment<T> {
 
     private MapView mMapView;
 
