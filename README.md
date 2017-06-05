@@ -1,3 +1,6 @@
+[![Build Status](https://www.bitrise.io/app/bdcd47872923d729/status.svg?token=FBpjtLs8Y7_r0SqaTDQSXw&branch=master)](https://www.bitrise.io/app/bdcd47872923d729)
+[![Release](https://jitpack.io/v/Wolox/wolmo-maps-android.svg)](https://jitpack.io/#Wolox/wolmo-maps-android)
+
 <p align="center">
   <img height="140px" width="400px" src="https://cloud.githubusercontent.com/assets/4109119/25543833/70745992-2c2e-11e7-9ae2-b5a95b47ba9f.png"/>
 </p>
