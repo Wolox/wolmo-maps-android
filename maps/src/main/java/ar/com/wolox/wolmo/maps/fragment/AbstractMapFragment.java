@@ -243,7 +243,9 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
      * Clears the map
      */
     public void clearMap() {
-        mMap.clear();
+        if (mMap != null) {
+            mMap.clear();
+        }
     }
 
     @Override
