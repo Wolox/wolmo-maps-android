@@ -1,5 +1,6 @@
 package ar.com.wolox.wolmo.maps.fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.CallSuper;
 import android.support.annotation.ColorRes;
@@ -22,10 +23,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 
+import java.util.List;
+
 import ar.com.wolox.wolmo.core.presenter.BasePresenter;
 import ar.com.wolox.wolmo.maps.R;
-
-import java.util.List;
 
 /**
  * Fragment that allows rendering {@link Marker}s and {@link Polyline}s on the {@link GoogleMap}. It
@@ -82,6 +83,10 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
         setMapParameters();
         setDefaultPosition();
         getPresenter().onMapReady();
+    }
+
+    public final boolean isMapReady() {
+        return mMap != null;
     }
 
     /**
@@ -328,6 +333,7 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
      * Delegated to the map view: sets a button that, when clicked, shows the user's location.
      * @param enable Set to true to add the button
      */
+    @SuppressLint("MissingPermission")
     public void setMyLocationEnabled(final boolean enable) {
         getMapView().getMapAsync(new OnMapReadyCallback() {
             @Override
