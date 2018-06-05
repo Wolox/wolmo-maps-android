@@ -5,4 +5,5 @@ package ar.com.wolox.wolmo.maps.fragment;
  */
 public interface IMapPresenter {
     void onMapReady();
+    void onMapDestroyed();
 }

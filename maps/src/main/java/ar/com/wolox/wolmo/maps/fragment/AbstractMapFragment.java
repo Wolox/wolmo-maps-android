@@ -85,6 +85,16 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
     }
 
     /**
+     * Notifies the presenter that maps has been destroyed.
+     *
+     * //@param maps readied map
+     */
+    protected final void onMapDestroyed(@NonNull GoogleMap map) {
+        mMap = map;
+        getPresenter().onMapDestroyed();
+    }
+
+    /**
      * Set the default position: latitude, longitude and zoom
      */
     private void setDefaultPosition() {
@@ -258,6 +268,7 @@ public abstract class AbstractMapFragment<P extends BasePresenter & IMapPresente
             mMap.clear();
         }
         mMap = null;
+        AbstractMapFragment.this.onMapDestroyed(mMap);
     }
 
     /**
