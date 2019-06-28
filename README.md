@@ -1,4 +1,4 @@
-[![Build Status](https://www.bitrise.io/app/bdcd47872923d729/status.svg?token=FBpjtLs8Y7_r0SqaTDQSXw&branch=master)](https://www.bitrise.io/app/bdcd47872923d729)
+[![Build Status](https://app.bitrise.io/app/bdcd47872923d729/status.svg?token=FBpjtLs8Y7_r0SqaTDQSXw&branch=master)](https://app.bitrise.io/app/bdcd47872923d729)
 [![Release](https://jitpack.io/v/Wolox/wolmo-maps-android.svg)](https://jitpack.io/#Wolox/wolmo-maps-android)
 
 <p align="center">
